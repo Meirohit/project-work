@@ -1,11 +1,10 @@
 import logging
 from itertools import combinations
-
 import numpy as np
 import matplotlib.pyplot as plt
 import networkx as nx
-
 from icecream import ic
+
 
 class Problem:
     _graph: nx.Graph
@@ -58,6 +57,7 @@ class Problem:
 
     def baseline(self):
         total_cost = 0
+        all_paths_di = nx.single_source_dijkstra_path(self._graph, source=0, weight='dist')
         for dest, path in nx.single_source_dijkstra_path(
             self._graph, source=0, weight='dist'
         ).items():
@@ -77,3 +77,4 @@ class Problem:
         size = [100] + [self._graph.nodes[n]['gold'] for n in range(1, len(self._graph))]
         color = ['red'] + ['lightblue'] * (len(self._graph) - 1)
         return nx.draw(self._graph, pos, with_labels=True, node_color=color, node_size=size)
+    

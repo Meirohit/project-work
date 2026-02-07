@@ -1,3 +1,6 @@
 venv/
 __pycache__/
 .DS_Store
+problem.ipynb.ipynb
+problem.ipynb_1.ipynb
+src/__pycache__/
