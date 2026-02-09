@@ -52,12 +52,10 @@ def swap_mutation(individual: TTPSolution, mutation_rate: float = 0.1) -> TTPSol
     return mutant
 
 
-def inversion_mutation(individual: 'TTPSolution', mutation_rate: float = 0.1) -> 'TTPSolution':
+def inversion_mutation(individual: TTPSolution, mutation_rate: float = 0.1) -> TTPSolution:
     """
     2-opt mutation: Reverse a segment of the route, Minimize changes in edges (most neighbours stay neighbours)
     """
-    from src.ga_solution import TTPSolution
-    
     if random.random() > mutation_rate:
         return individual
     
@@ -75,11 +73,10 @@ def inversion_mutation(individual: 'TTPSolution', mutation_rate: float = 0.1) ->
     return mutant
 
 
-def insert_mutation(individual: 'TTPSolution', mutation_rate: float = 0.1) -> 'TTPSolution':
+def insert_mutation(individual: TTPSolution, mutation_rate: float = 0.1) -> TTPSolution:
     """
     Remove a city and insert it elsewhere, Minimize changes in the order, preserve relative order"
     """
-    from src.ga_solution import TTPSolution
     
     if random.random() > mutation_rate:
         return individual

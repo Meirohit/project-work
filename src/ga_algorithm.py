@@ -1,5 +1,7 @@
 import random
 from Problem import Problem
+from src.hybrid_aco.precompute import PrecomputedData
+from src.hybrid_aco.beta_optimizer import FastBetaOptimizer
 from src.ga_solution import TTPSolution
 from src.ga_operators import (
     order_crossover, swap_mutation, 
@@ -24,7 +26,9 @@ def genetic_algorithm(
     """
     
     clear_path_cache()
-    
+    # PRECOMPUTE (this is the key optimization!)
+    precomputed = PrecomputedData(problem)
+    optimizer = FastBetaOptimizer(precomputed)
     # Step 1: Initialize population (random permutations)
     if verbose:
         print("Initializing population...")
@@ -100,6 +104,8 @@ def genetic_algorithm(
             print(f"Gen {generation}: Best={-best_ever.fitness:.2f}, Avg={-avg_fitness:.2f}")
     
     if verbose:
-        print(f"\nFinal best cost: {-best_ever.fitness:.2f}")
+        print(f"\nBest cost after all GA: {-best_ever.fitness:.2f}")
+    
+    # Beta optimization (with early stopping)
     
     return best_ever
