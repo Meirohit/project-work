@@ -29,9 +29,6 @@ class PrecomputedData:
                     self.all_paths[(i, j)] = paths[j]
                     self.all_distances[i, j] = lengths[j]
         
-        # Precompute gold amounts
-        # self.gold = {i: self.graph.nodes[i]['gold'] for i in range(self.num_cities)}
-        
         print("Precomputation complete!")
     
     def get_path(self, i, j):

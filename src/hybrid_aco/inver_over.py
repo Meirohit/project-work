@@ -3,10 +3,7 @@ import copy
 
 def inver_over_operator(tour, reference_tour=None, prob_ref=0.85):
     """
-    Inver-Over operator for TSP
-    
-    From your notes (Chapter 7): "Inver over: One gene is selected in the first parent.
-    One edge is taken from the second parent, trying to preserve edges of the first."
+    Inver-Over adapted for TTP solutions.
     
     Args:
         tour: Current tour (list of city indices)

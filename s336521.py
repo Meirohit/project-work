@@ -45,8 +45,8 @@ def solution(p: Problem):
             problem=p,
             population_size=100,
             generations=200,
-            crossover_rate=0.7,
-            mutation_rate=0.3,
+            crossover_rate=0.8,
+            mutation_rate=0.2,
             tournament_size=3,
             elite_size=3,
             verbose=True
@@ -80,7 +80,7 @@ def solution(p: Problem):
 
 
 if __name__ == "__main__":
-    p = Problem(num_cities=100, density=0.2, alpha=1.0, beta=2.0)
+    p = Problem(num_cities=100, density=1, alpha=1, beta=3, seed=42)
     baseline = p.baseline()
     print(f"Baseline: {baseline:.2f}\n")
     
@@ -99,8 +99,15 @@ if __name__ == "__main__":
     print("\n" + "="*60)
     print("TESTING GA")
     print("="*60)
-    result_ga = genetic_algorithm(p, population_size=100, generations=250, verbose=True)
-    print(f"GA Result: {-result_ga.fitness:.2f}")
+    result = solution(p)                      # set "GA" in solution() to test GA
+
+    # # Validation check
+    # if result_ga.path_steps:
+    #     trips = 0
+    #     for node, _ in result_ga.path_steps:
+    #         if node == 0: trips += 1
+    #     # Subtract 1 because trips usually end with 0, but we count returns
+    #     print(f"Solution strategy used approx {(trips-1)//2 + 1} trips (returns to depot).")
     ##########################################################################################################
     
 
@@ -116,9 +123,9 @@ if __name__ == "__main__":
     # print(f"Path length: {len(result)} steps")
     
     # test_configs = [
-    #     (20, 0.3, 1.0, 1.5),  # Small, moderate beta
-    #     (30, 0.3, 1.0, 2.0),  # Medium, high beta
-    #     (50, 0.2, 1.5, 2.5),  # Large, very high beta
+    #     (30, 0.3, 1.0, 1.0),  # Small, moderate beta
+    #     (50, 0.3, 1.0, 0.5),  # Medium, high beta
+    #     (100, 0.2, 1.5, 2.5),  # Large, very high beta
     # ]
     # for n, d, a, b in test_configs:
     #     print("\n" + "="*70)
